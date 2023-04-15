@@ -5,7 +5,7 @@
   tasks:
     - name: Execute Test for all hosts
       block:
-        - shell: 'echo $ANSIBLE_CONFIG}'
+        - shell: 'echo $ANSIBLE_CONFIG'
           register: conf
         - debug: 
             msg: "{{ conf.stdout }}"
