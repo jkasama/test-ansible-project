@@ -5,6 +5,8 @@
   tasks:
     - name: Execute Test for all hosts
       block:
+        - name: Install testinfra
+          ansible.builtin.shell: 'pip3 install -r requirements.txt'
         - name: Execute Test For all hosts
           ansible.builtin.shell: 'py.test --hosts=ansible://all -v tests/test_myinfra.py'
           register: test_result
