@@ -7,8 +7,11 @@
       block:
         - name: Install testinfra
           ansible.builtin.shell: 'pip3 install -r requirements.txt'
+        - shell: 'pwd'
+        - shell: 'ls -l'
+        - shell: 'ls -l /etc/ansible/'
         - name: Execute Test For all hosts
-          ansible.builtin.shell: 'py.test --ansible-inventory=inventory --hosts=ansible://all -v tests/test_myinfra.py'
+          ansible.builtin.shell: 'py.test --hosts=ansible://all -v tests/test_myinfra.py'
           register: test_result
           changed_when: no
         - ansible.builtin.debug:
