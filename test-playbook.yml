@@ -5,12 +5,10 @@
   tasks:
     - name: Execute Test for all hosts
       block:
-        - name: Install testinfra
-          ansible.builtin.shell: 'pip3 install -r requirements.txt'
-        - shell: 'ls -alR ~/'
-          register: 'hoge'
+        - name: 'ansible all -m ping'
+          register: ping
         - debug:
-            msg: "{{ hoge.stdout_lines }}"
+            msg: "{{ ping.stdout_lines }}"
         - name: Execute Test For all hosts
           ansible.builtin.shell: 'py.test --hosts=ansible://all -v tests/test_myinfra.py'
           register: test_result
