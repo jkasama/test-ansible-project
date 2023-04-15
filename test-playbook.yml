@@ -8,7 +8,7 @@
         - name: install testinfra
           ansible.builtin.shell: "pip3 install pytest-testinfra"
         - name: Execute Test For all hosts
-          ansible.builtin.shell: "py.test --hosts=ansible://all --ssh-extra-args='-o StrictHostKeyChecking~no' -v tests/test_myinfra.py"
+          ansible.builtin.shell: "py.test --hosts=ansible://all --ssh-extra-args='-o StrictHostKeyChecking=no' -v tests/test_myinfra.py"
           register: test_result
           changed_when: no
         - ansible.builtin.debug:
