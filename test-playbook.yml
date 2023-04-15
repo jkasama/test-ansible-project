@@ -7,10 +7,6 @@
       block:
         - name: Install testinfra
           ansible.builtin.shell: 'pip3 install -r requirements.txt'
-        - shell: 'pwd'
-          register: workdir
-        - debug:
-            msg: "{{ workdir.stdout }}"
         - shell: 'ls -l'
           register: workdir_list
         - debug:
