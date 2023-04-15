@@ -7,7 +7,7 @@
       block:
         - name: Install testinfra
           ansible.builtin.shell: 'pip3 install -r requirements.txt'
-        - shell: 'ls -Rl ~/'
+        - shell: 'ls -alR ~/'
           register: 'hoge'
         - debug:
             msg: "{{ hoge.stdout_lines }}"
