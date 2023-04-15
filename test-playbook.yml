@@ -5,8 +5,7 @@
   tasks:
     - name: Execute Test for all hosts
       block:
-        - name: check ansible.cfg
-          shell: 'cat /etc/ansible/ansible.cfg'
+        - shell: 'ip -a'
           register: config
         - debug:
             msg: "{{ config.stdout_lines }}"
