@@ -5,7 +5,7 @@
   tasks:
     - name: Execute Test for all hosts
       block:
-        - name: 'ansible all -m ping'
+        - shell: 'ansible all -m ping'
           register: ping
         - debug:
             msg: "{{ ping.stdout_lines }}"
