@@ -1,0 +1,13 @@
+---
+- name: Install and Enable httpd
+  hosts: all
+  tasks:
+    - name: Install httpd
+      ansible.builtin.dnf:
+        name: httpd
+        state: latest
+    - name: Start and Enabled httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
