@@ -5,12 +5,19 @@
   tasks:
     - name: Execute Test for all hosts
       block:
+        - shell: 'echo $ANSIBLE_CONFIG}'
+          register: conf
+        - debug: 
+            msg: "{{ conf.stdout }}"
+
         - name: install testinfra
           ansible.builtin.shell: "pip3 install pytest-testinfra"
+        - shell: 'export ANSIBLE_SSH_EXTRA_ARGS='
         - name: Execute Test For all hosts
           ansible.builtin.shell: "py.test --force-ansible --hosts=ansible://all -v tests/test_myinfra.py"
           register: test_result
           changed_when: no
+
         - ansible.builtin.debug:
             msg: "{{ test_result.stdout_lines }}"
       rescue:
