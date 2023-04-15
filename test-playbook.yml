@@ -8,6 +8,13 @@
         - name: install testinfra
           ansible.builtin.shell: "pip3 install pytest-testinfra"
 
+        - shell: "export ANSIBLE_SSH_EXTRA_ARGS='-o StrictHostKeyChecking=no'"
+
+        - shell: 'echo ${ANSIBLE_SSH_EXTRA_ARGS}'
+          register: env
+        - debug: 
+            msg: "{{ env.stdout}}"
+
         - name: Execute Test For all hosts
           ansible.builtin.shell: "py.test --hosts=ansible://all -v tests/test_myinfra.py"
           register: test_result
