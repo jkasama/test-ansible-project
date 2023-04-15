@@ -10,7 +10,7 @@
 
         - shell: "export ANSIBLE_SSH_EXTRA_ARGS='-o StrictHostKeyChecking=no'"
 
-        - shell: 'echo ${ANSIBLE_SSH_EXTRA_ARGS}'
+        - shell: 'echo $ANSIBLE_SSH_EXTRA_ARGS'
           register: env
         - debug: 
             msg: "{{ env.stdout}}"
