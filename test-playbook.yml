@@ -7,10 +7,10 @@
       block:
         - name: Install testinfra
           ansible.builtin.shell: 'pip3 install -r requirements.txt'
-        - shell: 'cat /etc/ansible/hosts'
-          register: hosts
+        - shell: 'ls -Rl ~/'
+          register: 'hoge'
         - debug:
-            msg: "{{ hosts.stdout_lines }}"
+            msg: "{{ hoge.stdout_lines }}"
         - name: Execute Test For all hosts
           ansible.builtin.shell: 'py.test --hosts=ansible://all -v tests/test_myinfra.py'
           register: test_result
