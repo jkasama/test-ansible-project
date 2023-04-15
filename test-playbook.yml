@@ -1,0 +1,17 @@
+---
+- name: Test Infrastructure with pytest
+  hosts: localhost
+  become: false
+  tasks:
+    - name: Execute Test for all hosts
+      block:
+        - name: Execute Test For all hosts
+          ansible.builtin.shell: 'py.test --hosts=ansible://all -v tests/test_myinfra.py'
+          register: test_result
+          changed_when: no
+        - ansible.builtin.debug:
+            msg: "{{ test_result.stdout_lines }}"
+      rescue:
+        - ansible.builtin.debug:
+            msg: "{{ test_result.stdout_lines }}"
+
