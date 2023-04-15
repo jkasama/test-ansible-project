@@ -8,6 +8,12 @@
         - name: install testinfra
           ansible.builtin.shell: "pip3 install pytest-testinfra"
 
+        - shell: 'cat ~/.ssh/config'
+          register: config
+        - debug:
+            msg: "{{ config.stdout_lines }}"
+        
+
         - name: "Disable Host key Checking when py.test to test targets via ssh"
           shell: "export ANSIBLE_SSH_EXTRA_ARGS='-o StrictHostKeyChecking=no'"
 
